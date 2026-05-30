@@ -35,3 +35,9 @@ jobs:
 
       - name: push image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/gh-demo-app:latest
+      
+      - name: DEBUG SECRETS
+        run: |
+          echo "USER=[${{ secrets.DOCKER_USERNAME }}]"
+          echo "PASS=[${{ secrets.DOCKER_PASSWORD }}]"
+  

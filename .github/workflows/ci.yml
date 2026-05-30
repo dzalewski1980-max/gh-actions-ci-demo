@@ -26,3 +26,12 @@ jobs:
      
       - name: build docker image
         run: docker build -t my-app .
+        
+      - name: login to dockerhub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: tag image
+        run: docker tag my-app ${{ secrets.DOCKER_USERNAME }}/gh-demo-app:latest
+
+      - name: push image
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/gh-demo-app:latest
